@@ -1,4 +1,4 @@
-// src/components/auth/RegisterAdmin.tsx
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -11,8 +11,6 @@ const RegisterAdmin = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { user, login } = useAuth();
-
-  // Kiểm tra nếu đã đăng nhập thì chuyển hướng
   useEffect(() => {
     if (user) {
       if (user.role === "admin") {
@@ -93,7 +91,6 @@ const RegisterAdmin = () => {
             Đăng ký Admin
           </Button>
         </Form.Item>
-
         <div style={{ textAlign: "center" }}>
           <a href="/login">Đã có tài khoản? Đăng nhập ngay</a>
         </div>
