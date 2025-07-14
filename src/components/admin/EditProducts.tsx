@@ -8,7 +8,6 @@ import { Card, Form, Input, Button, Typography, message, Select } from "antd";
 const { Title } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
-
 const EditProducts = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ const EditProducts = () => {
     const getProductById = async () => {
       try {
         const { data } = await axios.get(`http://localhost:3000/products/${id}`);
-        reset(data); // Cập nhật dữ liệu vào form
+        reset(data); 
       } catch (error) {
         console.error(error);
       }
@@ -101,7 +100,6 @@ const EditProducts = () => {
           />
         </Form.Item>
 
-        {/* Mô tả sản phẩm */}
         <Form.Item label="Mô tả sản phẩm">
           <Controller
             name="description"
@@ -112,7 +110,7 @@ const EditProducts = () => {
           />
         </Form.Item>
 
-        {/* Chọn danh mục */}
+
         <Form.Item
           label="Danh mục sản phẩm"
           validateStatus={errors.categoryId ? "error" : ""}
@@ -134,7 +132,7 @@ const EditProducts = () => {
           />
         </Form.Item>
 
-        {/* Trạng thái còn hàng */}
+      
         <Form.Item label="Trạng thái">
           <Controller
             name="inStock"
