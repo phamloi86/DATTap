@@ -2,8 +2,8 @@ module.exports = {
   email: {
     service: 'gmail',
     auth: {
-      user: 'tuyetmatthienthu@gmail.com', // Thay bằng email của bạn
-      pass: 'benabldxavhvgxyr'     // Thay bằng app password của Gmail
+      user: 'tuyetmatthienthu@gmail.com',
+      pass: 'benabldxavhvgxyr'     
     }
   },
   otp: {
