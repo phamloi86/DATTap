@@ -2,7 +2,7 @@ export interface Icategory {
     id: number;
     name: string;
     slug: string;
-    parentId?: number | null; // null nếu là danh mục cha
+    parentId?: number | null; 
     active:boolean
   }
 
