@@ -3,11 +3,11 @@ import { Card, Col, Descriptions, Row, Table, Typography, Spin } from "antd";
 import { useParams } from "react-router-dom";
 import { useOrders } from "../client/OrderContext";
 
-// Định nghĩa type cho các key
+
 type PaymentMethod = 1 | 2 | 3;
 type OrderStatus = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
-// Khai báo các map với type rõ ràng
+
 const paymentMethodMap: Record<PaymentMethod, string> = {
   1: "Chuyển khoản",
   2: "Thanh toán khi nhận hàng",

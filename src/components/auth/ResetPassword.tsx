@@ -12,19 +12,18 @@ const ResetPassword = () => {
     navigate("/forgot");
     return null;
   }
-
   const onFinish = async (values: { password: string; confirmPassword: string }) => {
     try {
-      // 1. Tìm user theo email
+    
       const { data: users } = await axios.get(`http://localhost:3000/users?email=${state.email}`);
       const user = users[0];
       if (!user) {
         message.error("Email không tồn tại!");
         return;
       }
-      // 2. Xóa user cũ
+      
       await axios.delete(`http://localhost:3000/users/${user.id}`);
-      // 3. Đăng ký lại với password mới và các thông tin cũ
+    
       await axios.post("http://localhost:3000/register", {
         email: state.email,
         password: values.password,

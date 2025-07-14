@@ -1,4 +1,4 @@
-// src/components/auth/Register.tsx
+
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
@@ -10,7 +10,6 @@ import {
   LockOutlined,
 } from "@ant-design/icons";
 import { useAuth } from "./AuthContext";
-
 const { Title, Text } = Typography;
 
 const Register = () => {
@@ -59,7 +58,7 @@ const Register = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #1a1a1a 0%, #4a2c00 100%)", // Gradient đen - vàng đậm
+        background: "linear-gradient(135deg, #1a1a1a 0%, #4a2c00 100%)",
       }}
     >
       <Card
@@ -67,7 +66,7 @@ const Register = () => {
           width: 450,
           borderRadius: 16,
           boxShadow: "0 8px 24px rgba(0, 0, 0, 0.3)",
-          background: "#fffef7", // Màu trắng ngà nhẹ nhàng
+          background: "#fffef7", 
           padding: "20px",
         }}
         cover={
@@ -75,14 +74,14 @@ const Register = () => {
             style={{
               textAlign: "center",
               padding: "20px 0",
-              background: "rgba(255, 215, 0, 0.1)", // Vàng nhạt trong suốt
+              background: "rgba(255, 215, 0, 0.1)", 
               borderRadius: "16px 16px 0 0",
             }}
           >
             <Title
               level={2}
               style={{
-                color: "#d4af37", // Vàng ánh kim
+                color: "#d4af37",
                 margin: 0,
                 fontWeight: 700,
                 textTransform: "uppercase",
@@ -189,7 +188,7 @@ const Register = () => {
               style={{
                 borderRadius: 8,
                 height: 48,
-                background: "#d4af37", // Màu vàng kim loại
+                background: "#d4af37", 
                 border: "none",
                 fontWeight: 600,
                 transition: "all 0.3s",

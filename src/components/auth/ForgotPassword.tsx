@@ -10,7 +10,6 @@ const { Title, Text } = Typography;
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
   const onFinish = async (values: { email: string }) => {
     try {
       setLoading(true);

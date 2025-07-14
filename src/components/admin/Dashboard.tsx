@@ -7,7 +7,6 @@ import {
   DatabaseOutlined,
 } from "@ant-design/icons";
 import "chart.js/auto";
-
 const DashBoard = () => {
   const [revenue, setRevenue] = useState(0);
   const [stock, setStock] = useState(0);

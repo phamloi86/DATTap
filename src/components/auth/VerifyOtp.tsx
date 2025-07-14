@@ -9,7 +9,6 @@ const { Title, Text } = Typography;
 const VerifyOtp = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  // Cho phép nhập email nếu không có state truyền sang
   const [email] = useState(location.state?.email || "");
 
   const onFinish = async (values: { otp: string; email?: string }) => {
