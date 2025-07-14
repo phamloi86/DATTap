@@ -9,6 +9,7 @@ export interface Iuser {
     password?: string; 
     isLocked?: boolean; // Trạng thái khóa
     lockUntil?: string | null; // Thời điểm hết khóa (ISO date string)
+    isDeleted?: boolean; // Đánh dấu user đã bị xoá mềm
   }
 
   export type IuserForm = Omit<Iuser, "id">;
