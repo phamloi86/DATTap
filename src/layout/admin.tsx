@@ -5,7 +5,6 @@ import SidebarAdmin from "./admin/sidebar";
 import FooterAdmin from "./admin/footer";
 
 const { Content, Sider } = Layout;
-
 const AdminLayout = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
