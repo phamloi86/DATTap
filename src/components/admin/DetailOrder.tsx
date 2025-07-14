@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Col, Descriptions, Row, Table, Typography, Spin } from "antd";
 import { useParams } from "react-router-dom";
 import { useOrders } from "../client/OrderContext";
+import axios from "axios";
 
 
 type PaymentMethod = 1 | 2 | 3;
@@ -31,14 +32,18 @@ const DetailOrder: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const foundOrder = orders.find((o) => o.id === Number(id));
-    if (foundOrder) {
-      setOrder(foundOrder);
-      setLoading(false);
-    } else {
-      setLoading(false);
-    }
-  }, [id, orders]);
+    const fetchOrder = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:3000/orders/${id}`);
+        setOrder(data);
+      } catch {
+        setOrder(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrder();
+  }, [id]);
 
   if (loading) return <Spin size="large" style={{ display: "block", textAlign: "center", marginTop: 50 }} />;
   if (!order) return <div>Không tìm thấy đơn hàng</div>;
