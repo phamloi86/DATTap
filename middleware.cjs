@@ -91,25 +91,7 @@ module.exports = async (req, res, next) => {
     });
     return;
   }
-  if (req.method === 'POST' && req.path === '/login') {
-    const { email, password } = req.body;
-    const users = await fetch('http://localhost:3000/users').then(r => r.json());
-    const user = users.find(u => u.email === email);
-    console.log("Đăng nhập:", { email, password });
-    if (!user) {
-      console.log("Không tìm thấy user");
-      return res.status(404).json({ error: 'Email không tồn tại' });
-    }
-    console.log("Hash trong DB:", user.password);
-    const match = await bcrypt.compare(password, user.password);
-    console.log("So sánh bcrypt:", match);
-    if (!match) {
-      console.log("Sai mật khẩu");
-      return res.status(401).json({ error: 'Mật khẩu không đúng' });
-    }
-    res.json({ user });
-    return;
-  }
+
   
   
 
