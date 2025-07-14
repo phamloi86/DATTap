@@ -32,6 +32,7 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import VerifyOtp from "./components/auth/VerifyOtp";
 import RestoreUser from "./components/admin/RestoreUser";
+import UserProfile from "./components/client/UserProfile";
 
 export default function App() {
   const routes = useRoutes([
@@ -78,6 +79,7 @@ export default function App() {
         { path: "forgot", element: <ForgotPassword /> },
         { path: "verify-otp", element: <VerifyOtp /> },
         { path: "reset-password", element: <ResetPassword /> },
+        { path: "profile", element: <UserProfile /> },
       ],
     },
 

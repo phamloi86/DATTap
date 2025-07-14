@@ -17,7 +17,7 @@ const removeAccents = (str: string) => {
 };
 const HeaderClient = () => {
   const { user, logout } = useAuth();
-  const { cartItems } = useCart(); 
+  const { cartItems } = useCart();
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState<string>("");
   const [options, setOptions] = useState<{ value: string; label: string }[]>([]);
@@ -104,12 +104,14 @@ const HeaderClient = () => {
         </Col>
         {user ? (
           <Col>
-            <Dropdown overlay={userMenu} trigger={["click"]}>
-              <Button type="text" style={{ color: "#D4AF37" }}>
-                <Avatar size="large" icon={<UserOutlined />} style={{ background: "#D4AF37", color: "#333" }} />
-                <Text style={{ marginLeft: 8, color: "#D4AF37" }}>{user.username}</Text>
-              </Button>
-            </Dropdown>
+            <Button
+              type="text"
+              style={{ color: "#D4AF37" }}
+              onClick={() => navigate("/profile")}
+            >
+              <Avatar size="large" icon={<UserOutlined />} style={{ background: "#D4AF37", color: "#333" }} />
+              <Text style={{ marginLeft: 8, color: "#D4AF37" }}>{user.username}</Text>
+            </Button>
           </Col>
         ) : (
           <Col>
