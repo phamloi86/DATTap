@@ -4,14 +4,12 @@ import { Carousel, Image, Card, Tag, Spin, Row, Col } from "antd";
 import { CustomerServiceOutlined, SyncOutlined, TruckOutlined } from "@ant-design/icons";
 import { Iproduct } from "../../interfaces/product";
 import { useNavigate } from "react-router-dom"; // Import useNavigate từ react-router-dom
-
 const banners = [
   "https://cdn.pnj.io/images/promo/238/BANNER_BST_Audax__1200x450__Main_banner.png",
   "https://theme.hstatic.net/200000061680/1000549213/14/ms_banner_img4.jpg?v=1363",
   "https://nuu.edu.vn/wp-content/uploads/huong-dan-ban-vang-bac-da-quy-kim-cuong-online-internet.jpg",
   "https://i.ytimg.com/vi/4LbTb92bfRk/maxresdefault.jpg",
 ];
-
 const infoBoxes = [
   {
     icon: <TruckOutlined style={{ fontSize: "36px", color: "#000000" }} />,
@@ -30,19 +28,17 @@ const infoBoxes = [
   },
 ];
 
-
 const Home = () => {
-  const navigate = useNavigate(); // Khai báo hook navigate
+  const navigate = useNavigate(); 
 
-  // State cho Featured Products
   const [products, setProducts] = useState<Iproduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // State cho New Products
+
   const [newProducts, setNewProducts] = useState<Iproduct[]>([]);
   const [newProductsLoading, setNewProductsLoading] = useState<boolean>(true);
 
-  // Call API cho Featured Products (sản phẩm cũ)
+  
   useEffect(() => {
     axios
       .get("http://localhost:3000/products")
@@ -64,8 +60,6 @@ const Home = () => {
         setLoading(false);
       });
   }, []);
-
-  // Call API cho New Products (sản phẩm mới)
   useEffect(() => {
     axios
       .get("http://localhost:3000/new_product")
@@ -88,14 +82,13 @@ const Home = () => {
       });
   }, []);
 
-  // Hàm xử lý chuyển hướng khi click vào sản phẩm
   const handleProductClick = (id: number) => {
     navigate(`/detail/${id}`);
   };
 
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
-      {/* Banner chạy toàn màn hình */}
+    
       <Carousel autoplay autoplaySpeed={3000} effect="fade" style={{ width: "100%", height: "600px", overflow: "hidden" }}>
         {banners.map((src, index) => (
           <div key={index}>
@@ -104,7 +97,7 @@ const Home = () => {
         ))}
       </Carousel>
 
-      {/* Info Boxes */}
+  
       <Row gutter={[16, 16]} style={{ marginTop: "30px", textAlign: "center" }} justify="center">
         {infoBoxes.map((box, index) => (
           <Col key={index} xs={24} sm={12} md={5}>
@@ -128,7 +121,6 @@ const Home = () => {
         ))}
       </Row>
 
-      {/* Featured Products Section */}
       {loading ? (
         <Spin size="large" style={{ marginTop: "20px" }} />
       ) : (
@@ -183,8 +175,6 @@ const Home = () => {
           </Row>
         </>
       )}
-
-      {/* New Products Section */}
       {newProductsLoading ? (
         <Spin size="large" style={{ marginTop: "20px" }} />
       ) : (
