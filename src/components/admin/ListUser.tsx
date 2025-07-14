@@ -23,8 +23,8 @@ const ListUser = () => {
   }, []);
   const handleDelete = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:3000/users/${id}`);
-      setUsers((prev) => prev.filter((user) => user.id !== id));
+      await axios.patch(`http://localhost:3000/users/${id}`, { isDeleted: true });
+      setUsers((prev) => prev.map((user) => user.id === id ? { ...user, isDeleted: true } : user));
       message.success("Xoá người dùng thành công!");
     } catch {
       message.error("Lỗi khi xoá người dùng!");
@@ -109,8 +109,13 @@ const ListUser = () => {
               ➕ Thêm người dùng
             </Button>
           </Link>
+          <Link to="/admin/restore-users">
+            <Button type="default" style={{ fontSize: "16px", fontWeight: "bold", marginLeft: 8 }}>
+              ♻ Khôi phục người dùng
+            </Button>
+          </Link>
         </div>
-        <Table dataSource={users.filter(u => u.id !== currentUser?.id)} columns={columns} rowKey="id" bordered />
+        <Table dataSource={users.filter(u => u.id !== currentUser?.id && u.isDeleted !== true)} columns={columns} rowKey="id" bordered />
       </div>
     </>
   );
