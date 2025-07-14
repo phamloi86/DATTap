@@ -6,9 +6,7 @@ import { Form, Input, Button, Card, Typography, message, Space } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "./AuthContext";
 import bcrypt from "bcryptjs";
-
 const { Title, Text } = Typography;
-
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -34,7 +32,7 @@ const Login = () => {
       if (data.user.role === "admin") {
         navigate("/admin");
       } else {
-        //navigate("/");
+        navigate("/");
       }
     } catch (error: any) {
       if (error.response?.status === 401) {
