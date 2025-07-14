@@ -28,7 +28,6 @@ const discountCodes: Record<DiscountCode, number> = {
   SAVE20: 20,
   FIXED50000: 50000,
 };
-
 const Checkout: React.FC = () => {
   const { cartItems, setCartItems } = useCart();
   const { user } = useAuth();
@@ -73,15 +72,15 @@ const Checkout: React.FC = () => {
       userId: user?.id || 1,
       items: cartItems,
       totalAmount: total,
-      discountCode: discountCode || "Không sử dụng", // Lưu mã giảm giá
-      discountAmount: discountAmount, // Lưu số tiền giảm
+      discountCode: discountCode || "Không sử dụng", 
+      discountAmount: discountAmount,
     };
     console.log("Đơn hàng mới:", newOrder);
     updateOrder(newOrder);
     setCartItems([]);
     localStorage.setItem("cartItems", JSON.stringify([]));
     message.success("Đã đặt hàng thành công!");
-    navigate("/order"); // Điều hướng về danh sách đơn hàng
+    navigate("/order");
   };
 
   if (cartItems.length === 0) return <Text>Giỏ hàng trống.</Text>;
