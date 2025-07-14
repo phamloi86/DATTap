@@ -6,10 +6,9 @@ import { DownOutlined } from "@ant-design/icons";
 const { Sider } = Layout;
 
 const SidebarAdmin = () => {
-  const location = useLocation(); // Lấy thông tin URL hiện tại
-  const [selectedKey, setSelectedKey] = useState("1"); // State để lưu key được chọn
+  const location = useLocation();
+  const [selectedKey, setSelectedKey] = useState("1"); 
 
-  // Cập nhật selectedKey dựa trên pathname khi URL thay đổi
   useEffect(() => {
     const pathname = location.pathname;
     switch (pathname) {
@@ -33,9 +32,9 @@ const SidebarAdmin = () => {
         setSelectedKey("5");
         break;
       default:
-        setSelectedKey("1"); // Mặc định về Dashboard nếu không khớp
+        setSelectedKey("1"); 
     }
-  }, [location.pathname]); // Chạy lại khi pathname thay đổi
+  }, [location.pathname]); 
 
   const productMenu = (
     <Menu>
@@ -75,7 +74,7 @@ const SidebarAdmin = () => {
       <Menu
         mode="vertical"
         className="text-center"
-        selectedKeys={[selectedKey]} // Sử dụng selectedKeys thay vì defaultSelectedKeys
+        selectedKeys={[selectedKey]} 
       >
         <Menu.Item key="1" className="font-bold">
           <Link to="/admin">Dashboard</Link>
