@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const { Title } = Typography;
 
 type OrderStatus = 1 | 2 | 3 | 4 | 5 | 6 | 7;
-
 const statusMap: Record<OrderStatus, string> = {
   1: "Chưa xác nhận",
   2: "Đã xác nhận",
@@ -26,7 +25,6 @@ const colorMap: Record<OrderStatus, string> = {
   6: "error",
   7: "red",
 };
-
 const Order: React.FC = () => {
   const { orders, updateOrder } = useOrders();
   console.log("Danh sách đơn hàng trong Order.tsx:", orders);

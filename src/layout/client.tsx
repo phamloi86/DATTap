@@ -6,7 +6,6 @@ import FooterClient from "./client/footer";
 import { CartProvider } from "../components/client/CartContext";
 
 const { Content } = Layout;
-
 const ClientLayout = () => {
   return (
     <CartProvider>

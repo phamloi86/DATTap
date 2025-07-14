@@ -8,7 +8,6 @@ import axios from "axios";
 
 const { Header } = Layout;
 const { Text } = Typography;
-
 const removeAccents = (str: string) => {
   return str
     .normalize("NFD")
@@ -16,10 +15,9 @@ const removeAccents = (str: string) => {
     .replace(/đ/g, "d")
     .replace(/Đ/g, "D");
 };
-
 const HeaderClient = () => {
   const { user, logout } = useAuth();
-  const { cartItems } = useCart(); // Lấy cartItems từ CartContext
+  const { cartItems } = useCart(); 
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState<string>("");
   const [options, setOptions] = useState<{ value: string; label: string }[]>([]);

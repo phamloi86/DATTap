@@ -6,10 +6,8 @@ import axios from "axios";
 import { Table, Button, Typography, Modal, Space, Image, Tag } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Helmet } from "react-helmet-async";
-
 const { confirm } = Modal;
 const { Title } = Typography;
-
 const ListProducts = () => {
   const [products, setProducts] = useState<Iproduct[]>([]);
   const [categories, setCategories] = useState<Icategory[]>([]);

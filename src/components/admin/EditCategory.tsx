@@ -15,13 +15,11 @@ import { Icategory, IcategoryForm } from "../../interfaces/category";
 
 const { Title } = Typography;
 const { Option } = Select;
-
 const EditCategory = () => {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>(); // Lấy id từ URL
+  const { id } = useParams<{ id: string }>(); 
   const [categories, setCategories] = useState<Icategory[]>([]);
   const [loading, setLoading] = useState(false);
-
   const {
     control,
     handleSubmit,
@@ -34,8 +32,6 @@ const EditCategory = () => {
       parentId: null,
     },
   });
-
-  // Lấy danh sách danh mục để chọn danh mục cha
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -47,13 +43,11 @@ const EditCategory = () => {
     };
     fetchCategories();
   }, []);
-
-  // Lấy thông tin danh mục cần chỉnh sửa
   useEffect(() => {
     const fetchCategory = async () => {
       try {
         const { data } = await axios.get(`http://localhost:3000/categories/${id}`);
-        reset(data); // Điền dữ liệu vào form
+        reset(data);
       } catch (error) {
         console.error("Lỗi khi lấy thông tin danh mục:", error);
         message.error("Không thể tải thông tin danh mục!");
@@ -100,7 +94,6 @@ const EditCategory = () => {
       </div>
 
       <Form layout="vertical" onFinish={handleSubmit(onSubmit)}>
-        {/* Tên danh mục */}
         <Form.Item
           label="Tên danh mục"
           validateStatus={errors.name ? "error" : ""}
@@ -115,8 +108,6 @@ const EditCategory = () => {
             )}
           />
         </Form.Item>
-
-        {/* Slug */}
         <Form.Item
           label="Slug (URL danh mục)"
           validateStatus={errors.slug ? "error" : ""}
@@ -131,8 +122,6 @@ const EditCategory = () => {
             )}
           />
         </Form.Item>
-
-        {/* Trạng thái */}
         <Form.Item label="Trạng thái">
           <Controller
             name="active"
@@ -145,9 +134,6 @@ const EditCategory = () => {
             )}
           />
         </Form.Item>
-
-
-        {/* Danh mục cha */}
         <Form.Item label="Danh mục cha (nếu có)">
           <Controller
             name="parentId"
@@ -171,8 +157,6 @@ const EditCategory = () => {
             )}
           />
         </Form.Item>
-
-        {/* Nút submit */}
         <Form.Item>
           <Button type="primary" htmlType="submit" block loading={loading}>
             Cập nhật danh mục

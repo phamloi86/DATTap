@@ -3,20 +3,16 @@ import { FacebookOutlined, TwitterOutlined, InstagramOutlined } from "@ant-desig
 
 const { Footer } = Layout;
 const { Text, Title } = Typography;
-
 const FooterClient = () => {
   return (
     <Footer style={{ background: "#222", color: "#fff", padding: "40px 50px" }}>
       <Row gutter={32}>
-        {/* Cột 1: Logo + Mô tả */}
         <Col span={8}>
           <Title level={3} style={{ color: "#D4AF37" }}>GOLD WORLD</Title>
           <Text style={{ color: "#d9d9d9" }}>
             Cửa hàng mua bán vàng uy tín, chất lượng cao cấp.
           </Text>
         </Col>
-
-        {/* Cột 2: Dịch vụ khách hàng */}
         <Col span={8}>
           <Title level={4} style={{ color: "#fff" }}>Dịch vụ khách hàng</Title>
           <Space direction="vertical">
@@ -25,8 +21,6 @@ const FooterClient = () => {
             <Text style={{ color: "#d9d9d9" }}>Câu hỏi thường gặp</Text>
           </Space>
         </Col>
-
-        {/* Cột 3: MXH + Địa chỉ */}
         <Col span={8}>
           <Title level={4} style={{ color: "#fff" }}>Liên hệ</Title>
           <Space size="large">

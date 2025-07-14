@@ -10,10 +10,9 @@ interface Order {
   userId: number;
   items: { product: { id: string | number; name: string; price: number; image: string }; quantity: number }[];
   totalAmount: number;
-  discountCode: string; // Thêm trường mã giảm giá
-  discountAmount: number; // Thêm trường số tiền giảm
+  discountCode: string; 
+  discountAmount: number;
 }
-
 const initialOrders: Order[] = [
   { id: 1, orderCode: "DH001", orderDate: "2025-03-17", paymentMethod: 1, paymentStatus: 1, orderStatus: 2, userId: 1, items: [], totalAmount: 0, discountCode: "Không sử dụng", discountAmount: 0 },
   { id: 2, orderCode: "DH002", orderDate: "2025-03-16", paymentMethod: 2, paymentStatus: 2, orderStatus: 3, userId: 2, items: [], totalAmount: 0, discountCode: "Không sử dụng", discountAmount: 0 },

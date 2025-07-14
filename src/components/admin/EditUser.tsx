@@ -22,7 +22,7 @@ const EditUsers = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState<Iuser | null>(null); // Lưu dữ liệu người dùng
+  const [userData, setUserData] = useState<Iuser | null>(null); 
 
   const {
     control,
@@ -39,12 +39,12 @@ const EditUsers = () => {
     },
   });
 
-  // Lấy thông tin người dùng
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const { data } = await axios.get(`http://localhost:3000/users/${id}`);
-        setUserData(data); // Lưu dữ liệu để kiểm tra trạng thái khóa
+        setUserData(data);
         reset({
           username: data.username,
           email: data.email,
@@ -64,7 +64,7 @@ const EditUsers = () => {
     setLoading(true);
     try {
       const updateData = { ...data };
-      if (!data.password) delete updateData.password; // Không gửi mật khẩu nếu không đổi
+      if (!data.password) delete updateData.password; 
       await axios.patch(`http://localhost:3000/users/${id}`, updateData);
       message.success("Cập nhật người dùng thành công!");
       navigate("/admin/users");

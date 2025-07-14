@@ -23,9 +23,8 @@ const orderStatusMap: Record<OrderStatus, string> = {
   6: "Hoàn thành đơn hàng",
   7: "Đã hủy",
 };
-
 const OrderDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Lấy id đơn hàng từ URL
+  const { id } = useParams<{ id: string }>(); 
   const { orders } = useOrders();
   const navigate = useNavigate();
   const [order, setOrder] = useState<any>(null);
@@ -46,7 +45,7 @@ const OrderDetail: React.FC = () => {
 
   const orderItems = order.items.map((item: any, index: number) => ({
     key: index + 1,
-    image: item.product.image, // Thêm trường image
+    image: item.product.image, 
     name: item.product.name,
     price: `${item.product.price.toLocaleString()} VND`,
     quantity: item.quantity,

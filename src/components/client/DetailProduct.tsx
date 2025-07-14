@@ -28,7 +28,7 @@ const DetailProduct = () => {
   const handleAddToCart = () => {
     if (product) {
       addToCart(product);
-      message.success(`${product.name} đã được thêm vào giỏ hàng!`); // Hiển thị thông báo thành công
+      message.success(`${product.name} đã được thêm vào giỏ hàng!`);
     }
   };
 

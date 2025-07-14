@@ -11,7 +11,6 @@ interface GoldPrice {
   buy: number;
   sell: number;
 }
-
 const columns: ColumnsType<GoldPrice> = [
   {
     title: "Loại vàng",

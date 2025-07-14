@@ -73,7 +73,7 @@ export default function App() {
         { path: "order", element: <Order /> },
         { path: "order-detail/:id", element: <OrderDetail /> },
         { path: "goldprice", element: <GoldPriceTable /> },
-        { path: "forgot", element: <ForgotPassword /> },
+        { path: "forgot", element: <ForgotPassword/> },
         { path: "verify-otp", element: <VerifyOtp /> },
         { path: "reset-password", element: <ResetPassword /> },
       ],

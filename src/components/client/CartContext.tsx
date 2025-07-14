@@ -5,13 +5,12 @@ interface CartItem {
   product: Iproduct;
   quantity: number;
 }
-
 interface CartContextType {
   cartItems: CartItem[];
   addToCart: (product: Iproduct) => void;
   removeFromCart: (id: string | number) => void;
   updateQuantity: (id: string | number, quantity: number) => void;
-  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>; // Thêm setCartItems
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);

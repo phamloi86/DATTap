@@ -6,10 +6,8 @@ import { Iuser } from "../../interfaces/user";
 import { Helmet } from "react-helmet-async";
 
 const { Title } = Typography;   
-
 const ListUser = () => {
   const [users, setUsers] = useState<Iuser[]>([]);
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -21,7 +19,6 @@ const ListUser = () => {
     };
     fetchUsers();
   }, []);
-
   const columns = [
     { title: "Tên tài khoản", dataIndex: "username", key: "username" },
     { title: "Email", dataIndex: "email", key: "email" },

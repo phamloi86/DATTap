@@ -18,11 +18,9 @@ const AddProducts = () => {
       .catch(() => message.error("Lỗi khi tải danh mục!"));
   }, []);
 
-  // Hàm thêm sản phẩm
   const addProduct = async (data: any) => {
     await axios.post("http://localhost:3000/products", data);
   };
-
   const { mutate } = useMutation({
     mutationFn: addProduct,
     onSuccess: () => {
@@ -33,7 +31,6 @@ const AddProducts = () => {
       message.error("Thêm sản phẩm thất bại!");
     },
   });
-
   const onFinish = (values: any) => {
     mutate(values);
   };
