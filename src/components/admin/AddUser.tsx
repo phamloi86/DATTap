@@ -11,7 +11,6 @@ import {
   message,
 } from "antd";
 import { IuserForm } from "../../interfaces/user";
-
 const { Title } = Typography;
 const { Option } = Select;
 
@@ -42,7 +41,6 @@ const AddUser = () => {
       message.error("Thêm người dùng thất bại!");
     }
   };
-
   return (
     <Card
       title={
