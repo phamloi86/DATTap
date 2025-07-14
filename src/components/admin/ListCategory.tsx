@@ -8,10 +8,8 @@ import { Helmet } from 'react-helmet-async';
 
 const { confirm } = Modal;
 const { Title } = Typography;
-
 const ListCategory = () => {
   const [categories, setCategories] = useState<Icategory[]>([]);
-
   useEffect(() => {
     const fetchCategories = async () => {
       const { data } = await axios.get("http://localhost:3000/categories");
@@ -19,7 +17,6 @@ const ListCategory = () => {
     };
     fetchCategories();
   }, []);
-
   const removeCategory = async (id: number | string) => {
     confirm({
       title: "Bạn có chắc chắn muốn xóa?",
@@ -31,7 +28,6 @@ const ListCategory = () => {
     });
   };
 
-  // Xây dựng cây danh mục cha - con
   const buildCategoryTree = (parentId: number | null): Icategory[] => {
     return categories
       .filter((category) => category.parentId === parentId)
