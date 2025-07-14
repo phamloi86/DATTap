@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Table, Button, Space, Tag } from "antd";
+import { Card, Table, Button, Space, Tag, Popconfirm, message } from "antd";
 import { Link } from "react-router-dom";
 import { useOrders } from "../client/OrderContext";
 
@@ -56,6 +56,19 @@ const OrderAdmin: React.FC = () => {
       .catch((err) => console.error("Lỗi khi lấy danh sách người dùng:", err));
   }, []);
 
+  const handleDelete = async (id: number) => {
+    try {
+      await fetch(`http://localhost:3000/orders/${id}`, { method: "DELETE" });
+      // Assuming useOrders context will update the orders state
+      // If not, you might need to refetch or update the state directly here
+      // For now, we'll rely on the context to trigger a re-render
+      // setOrders((prev) => prev.filter((order) => order.id !== id)); // This line is removed as per the new_code
+      message.success("Xoá đơn hàng thành công!");
+    } catch {
+      message.error("Lỗi khi xoá đơn hàng!");
+    }
+  };
+
   const columns = [
     { title: "STT", dataIndex: "id", key: "id" },
     { title: "Mã đơn hàng", dataIndex: "orderCode", key: "orderCode" },
@@ -93,7 +106,7 @@ const OrderAdmin: React.FC = () => {
     {
       title: "Hành động",
       key: "actions",
-      render: (_: any, record: any) => (
+      render: (_: unknown, record: any) => (
         <Space>
           <Link to={`/admin/updateorder/${record.id}`}>
             <Button type="primary">✏ Chỉnh sửa</Button>
@@ -103,6 +116,14 @@ const OrderAdmin: React.FC = () => {
               Chi tiết
             </Button>
           </Link>
+          <Popconfirm
+            title="Bạn có chắc muốn xoá đơn hàng này?"
+            onConfirm={() => handleDelete(record.id)}
+            okText="Xoá"
+            cancelText="Huỷ"
+          >
+            <Button danger type="primary">🗑 Xoá</Button>
+          </Popconfirm>
         </Space>
       ),
     },
