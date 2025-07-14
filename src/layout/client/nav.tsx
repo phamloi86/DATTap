@@ -6,10 +6,7 @@ import type { Icategory } from "../../interfaces/category";
 
 const Nav = () => {
   const [categories, setCategories] = useState<Icategory[]>([]);
-
-  // Danh mục bạn muốn hiển thị trên navbar (chỉ định theo ID)
   const selectedCategories = [1, 2, 7, 9];
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -21,11 +18,8 @@ const Nav = () => {
     };
     fetchCategories();
   }, []);
-
-  // Lọc ra danh mục chỉ có trong selectedCategories
   const filteredCategories = categories.filter(category => selectedCategories.includes(category.id));
 
-  // Xây dựng danh mục cha và con
   const categoryMap = new Map<number, Icategory[]>();
   filteredCategories.forEach((category) => {
     if (!category.parentId) {
