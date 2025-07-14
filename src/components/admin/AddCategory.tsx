@@ -12,15 +12,11 @@ import {
   message,
 } from "antd";
 import { Icategory, IcategoryForm } from "../../interfaces/category";
-
 const { Title } = Typography;
 const { Option } = Select;
-
 const AddCategory = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState<Icategory[]>([]);
-
-  // Lấy danh sách danh mục để chọn danh mục cha
   useEffect(() => {
     const fetchCategories = async () => {
       try {
