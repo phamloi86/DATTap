@@ -26,7 +26,14 @@ const Login = () => {
     setLoading(true);
     try {
       const { data } = await axios.post("http://localhost:3000/login", values);
-  
+
+      // Kiểm tra user có bị xoá mềm không
+      if (data.user.isDeleted) {
+        message.error("Tài khoản này đã bị xoá hoặc bị khoá!");
+        setLoading(false);
+        return;
+      }
+
       login(data.user); // bạn giữ như cũ
       message.success("Đăng nhập thành công!");
       if (data.user.role === "admin") {
