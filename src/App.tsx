@@ -31,6 +31,7 @@ import OrderDetail from "./components/client/OrderDetail";
 import ForgotPassword from "./components/auth/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword";
 import VerifyOtp from "./components/auth/VerifyOtp";
+import RestoreUser from "./components/admin/RestoreUser";
 
 export default function App() {
   const routes = useRoutes([
@@ -56,6 +57,7 @@ export default function App() {
         { path: "users", element: <ListUser /> },
         { path: "addusers", element: <AddUser /> },
         { path: "editusers/:id", element: <EditUser /> },
+        { path: "restore-users", element: <RestoreUser /> },
       ],
     },
 
@@ -73,7 +75,7 @@ export default function App() {
         { path: "order", element: <Order /> },
         { path: "order-detail/:id", element: <OrderDetail /> },
         { path: "goldprice", element: <GoldPriceTable /> },
-        { path: "forgot", element: <ForgotPassword/> },
+        { path: "forgot", element: <ForgotPassword /> },
         { path: "verify-otp", element: <VerifyOtp /> },
         { path: "reset-password", element: <ResetPassword /> },
       ],
