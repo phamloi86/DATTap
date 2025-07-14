@@ -1,7 +1,7 @@
-import React from "react";
-import { useOrders } from "./OrderContext";
+import React, { useEffect, useState } from "react";
 import { Table, Button, Tag, Typography } from "antd";
 import { Link } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 
 const { Title } = Typography;
 
@@ -26,14 +26,32 @@ const colorMap: Record<OrderStatus, string> = {
   7: "red",
 };
 const Order: React.FC = () => {
-  const { orders, updateOrder } = useOrders();
-  console.log("Danh sách đơn hàng trong Order.tsx:", orders);
+  const { user } = useAuth();
+  const [orders, setOrders] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/orders");
+        const data = await res.json();
+        setOrders(data);
+      } catch {
+        setOrders([]);
+      }
+    };
+    fetchOrders();
+    const interval = setInterval(fetchOrders, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (!user) {
+    return <div style={{ padding: 20 }}><Title level={2}>Bạn cần đăng nhập để xem đơn hàng!</Title></div>;
+  }
+  const myOrders = orders.filter(order => order.userId === user.id);
+  console.log("Danh sách đơn hàng trong Order.tsx:", myOrders);
 
   const handleCancelOrder = (orderId: number) => {
-    const updatedOrder = orders.find((order) => order.id === orderId);
-    if (updatedOrder) {
-      updateOrder({ ...updatedOrder, orderStatus: 7 });
-    }
+    // Có thể gọi API PATCH để cập nhật trạng thái nếu muốn
   };
 
   const columns = [
@@ -81,7 +99,7 @@ const Order: React.FC = () => {
   return (
     <div style={{ padding: "20px" }}>
       <Title level={2}>Đơn hàng của tôi</Title>
-      <Table columns={columns} dataSource={orders} rowKey="id" pagination={{ pageSize: 5 }} />
+      <Table columns={columns} dataSource={myOrders} rowKey="id" pagination={{ pageSize: 5 }} />
     </div>
   );
 };
