@@ -14,12 +14,10 @@ const HeaderAdmin = () => {
   return (
     <Header style={{ background: "#fff", boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)", padding: "0 24px" }}>
       <Row justify="space-between" align="middle">
-        {/* Logo */}
         <Col>
           <Text strong style={{ fontSize: "18px" }}>{user?.username || "Admin"}</Text>
         </Col>
 
-        {/* Ô tìm kiếm */}
         <Col>
           <Input
             prefix={<SearchOutlined style={{ color: "rgba(0,0,0,0.45)" }} />}
