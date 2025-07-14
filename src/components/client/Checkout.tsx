@@ -59,7 +59,11 @@ const Checkout: React.FC = () => {
     }
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
+    if (!user) {
+      message.error("Bạn cần đăng nhập để đặt hàng!");
+      return;
+    }
     setIsModalVisible(false);
     console.log("Cart items trước khi đặt hàng:", cartItems);
     const newOrder = {
@@ -69,18 +73,28 @@ const Checkout: React.FC = () => {
       paymentMethod: paymentMethod === "cash" ? 2 : 1,
       paymentStatus: paymentMethod === "cash" ? 1 : 2,
       orderStatus: 1,
-      userId: user?.id || 1,
+      userId: user.id,
       items: cartItems,
       totalAmount: total,
-      discountCode: discountCode || "Không sử dụng", 
+      discountCode: discountCode || "Không sử dụng",
       discountAmount: discountAmount,
     };
     console.log("Đơn hàng mới:", newOrder);
-    updateOrder(newOrder);
-    setCartItems([]);
-    localStorage.setItem("cartItems", JSON.stringify([]));
-    message.success("Đã đặt hàng thành công!");
-    navigate("/order");
+    try {
+      const res = await fetch("http://localhost:3000/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newOrder),
+      });
+      if (!res.ok) throw new Error("Lỗi khi gửi đơn hàng lên server");
+      updateOrder(newOrder); // Đảm bảo context client cũng có đơn hàng mới
+      setCartItems([]);
+      localStorage.setItem("cartItems", JSON.stringify([]));
+      message.success("Đã đặt hàng thành công!");
+      navigate("/order");
+    } catch (err) {
+      message.error("Lỗi khi đặt hàng. Vui lòng thử lại!");
+    }
   };
 
   if (cartItems.length === 0) return <Text>Giỏ hàng trống.</Text>;
