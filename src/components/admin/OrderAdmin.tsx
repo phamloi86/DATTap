@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Table, Button, Space, Tag, Popconfirm, message } from "antd";
 import { Link } from "react-router-dom";
-import { useOrders } from "../client/OrderContext";
 
 // Định nghĩa type cho các key
 type PaymentMethod = 1 | 2 | 3;
@@ -46,10 +45,21 @@ const getStatusTag = (status: number) => {
 };
 
 const OrderAdmin: React.FC = () => {
-  const { orders } = useOrders();
+  const [orders, setOrders] = useState<any[]>([]);
   const [users, setUsers] = useState<any[]>([]);
 
+  const fetchOrders = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/orders");
+      const data = await res.json();
+      setOrders(data);
+    } catch {
+      message.error("Lỗi khi lấy danh sách đơn hàng!");
+    }
+  };
+
   useEffect(() => {
+    fetchOrders();
     fetch("http://localhost:3000/users")
       .then((res) => res.json())
       .then((data) => setUsers(data))
@@ -59,10 +69,7 @@ const OrderAdmin: React.FC = () => {
   const handleDelete = async (id: number) => {
     try {
       await fetch(`http://localhost:3000/orders/${id}`, { method: "DELETE" });
-      // Assuming useOrders context will update the orders state
-      // If not, you might need to refetch or update the state directly here
-      // For now, we'll rely on the context to trigger a re-render
-      // setOrders((prev) => prev.filter((order) => order.id !== id)); // This line is removed as per the new_code
+      await fetchOrders();
       message.success("Xoá đơn hàng thành công!");
     } catch {
       message.error("Lỗi khi xoá đơn hàng!");
