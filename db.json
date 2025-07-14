@@ -1,0 +1,352 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "orderCode": "ORD123456",
+      "orderDate": "2025-03-20T10:30:00Z",
+      "paymentMethod": 2,
+      "trang_thai_thanh_toan": 2,
+      "price": 30000,
+      "orderStatus": 2,
+      "quantity": 2,
+      "paymentStatus": 2
+    },
+    {
+      "id": 2,
+      "orderCode": "ORD123457",
+      "orderDate": "2025-03-19T15:45:00Z",
+      "paymentMethod": 2,
+      "trang_thai_thanh_toan": 2,
+      "price": 40000,
+      "orderStatus": 2,
+      "quantity": 1,
+      "paymentStatus": 2
+    },
+    {
+      "id": 3,
+      "orderCode": "ORD123458",
+      "orderDate": "2025-03-18T09:20:00Z",
+      "paymentMethod": 2,
+      "trang_thai_thanh_toan": 1,
+      "price": 5000,
+      "orderStatus": 1,
+      "quantity": 3,
+      "paymentStatus": 1
+    }
+  ],
+  "new_product": [
+    {
+      "id": 1,
+      "name": "Sản phẩm 1",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 99999,
+      "description": "Áo thun cotton mềm mại, thoáng mát.",
+      "categoryId": 1,
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Sản phẩm 1",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 99999,
+      "description": "Áo thun cotton mềm mại, thoáng mát.",
+      "categoryId": 2,
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "name": "Sản phẩm 1",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 99999,
+      "description": "Áo thun cotton mềm mại, thoáng mát.",
+      "categoryId": 4,
+      "inStock": true
+    },
+    {
+      "id": 5,
+      "name": "Sản phẩm 1",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 99999,
+      "description": "Áo thun cotton mềm mại, thoáng mát.",
+      "categoryId": 5,
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "name": "Sản phẩm 1",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 99999,
+      "description": "Áo thun cotton mềm mại, thoáng mát.",
+      "categoryId": 6,
+      "inStock": true
+    },
+    {
+      "id": 7,
+      "name": "Sản phẩm 1",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 99999,
+      "description": "Áo thun cotton mềm mại, thoáng mát.",
+      "categoryId": 7,
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Sản phẩm 1",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 99999,
+      "description": "Áo thun cotton mềm mại, thoáng mát.",
+      "categoryId": 8,
+      "inStock": true
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Sản phẩm 2",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 99999,
+      "description": "Áo thun cotton mềm mại, thoáng mát.11",
+      "categoryId": 1,
+      "inStock": true
+    },
+    {
+      "id": 1,
+      "name": "Sản phẩm 1",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 99999,
+      "description": "Áo thun cotton mềm mại, thoáng mát.",
+      "categoryId": 1,
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Sản phẩm 2",
+      "image": "https://img.pikbest.com/png-images/20241025/cute-robot-clipart-illustration-png_11003024.png!sw800",
+      "price": 200000,
+      "description": "Áo thun cotton mềm mại, thoáng mát.",
+      "categoryId": 1,
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "name": "phung Duong123",
+      "image": "https://cdn.vuahanghieu.com/unsafe/0x900/left/top/smart/filters:quality(90)/https://admin.vuahanghieu.com/upload/product/2024/09/bup-be-baby-three-v3-vinyl-plush-dinosaur-mau-xanh-la-66f4e3b343e26-26092024113147.jpg",
+      "price": 123312,
+      "description": "Áo thun cotton mềm mại, thoáng mát."
+    },
+    {
+      "name": "abc",
+      "image": "https://sieuthidaisymart.com/wp-content/uploads/2024/12/blindbox-tui-mu-Baby-Three-400-7.jpg",
+      "price": 123,
+      "id": 7,
+      "description": "Áo thun cotton mềm mại, thoáng mát."
+    },
+    {
+      "name": "abcd",
+      "image": "https://product.hstatic.net/200000159347/product/img_1440_969e269f07b3404185888d963a89a829_master.jpeg",
+      "price": 123231,
+      "id": 8
+    },
+    {
+      "name": "abcde",
+      "image": "https://bizweb.dktcdn.net/100/489/014/products/467126997-581473647581768-8706382301828698230-n.jpg?v=1732318847970",
+      "price": 1232312,
+      "id": 9
+    },
+    {
+      "name": "abcdef",
+      "image": "https://sieuthidaisymart.com/wp-content/uploads/2024/12/blindbox-tui-mu-Baby-Three-400-8.jpg",
+      "price": 12323122,
+      "id": 10
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Điện thoại",
+      "slug": "dien-thoai",
+      "parentId": null,
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Laptop",
+      "slug": "laptop",
+      "parentId": null,
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "Samsung",
+      "slug": "samsung",
+      "parentId": 7,
+      "active": true
+    },
+    {
+      "id": 5,
+      "name": "MacBook",
+      "slug": "macbook",
+      "parentId": 2,
+      "active": true
+    },
+    {
+      "id": 6,
+      "name": "Dell",
+      "slug": "dell",
+      "parentId": 2,
+      "active": true
+    },
+    {
+      "name": "phung Duong",
+      "slug": "duong",
+      "parentId": null,
+      "id": 7,
+      "active": true
+    },
+    {
+      "name": "Duong con",
+      "slug": "conduong",
+      "parentId": 7,
+      "id": 8,
+      "active": true
+    },
+    {
+      "name": "Blind Box",
+      "slug": "blind-box",
+      "parentId": null,
+      "active": true,
+      "id": 9
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@example.com",
+      "password": "$2a$10$2HxHP9ktcHKfXgTZtO4fT.EnIjdHkED7l.ndGKH0xAfIitnzciFsO",
+      "username": "Duong",
+      "phone": "0941097302",
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "email": "client123@gmail.com",
+      "password": "$2a$10$Ga4bEYveOmGHZsxl.aKcG.efNt7Q7VlTAEz/bKRf1i9eNoCdM21Aq",
+      "username": "client123",
+      "phone": "9090909090",
+      "address": "123 Đường ABC, Quận 1, TP. HCM",
+      "role": "client",
+      "id": 2
+    },
+    {
+      "email": "duongphph53276@gmail.com",
+      "password": "$2a$10$h8PvDKwcYiW4zz6Z7hKpveXHJlWkahXfZP0PD33deHfvcwo19kSH6",
+      "username": "Duong",
+      "phone": "0941097302",
+      "address": "123 Đường ABC, Quận 1, TP. HCM",
+      "role": "admin",
+      "id": 3
+    },
+    {
+      "email": "dev@example.com",
+      "password": "$2a$10$jNL2MFWETQZ0LSMnz5tFfu.9ETKkCeWm/krH50PSh7qZThO.NBJ/a",
+      "username": "dev@example.com",
+      "phone": "0123123123",
+      "role": "admin",
+      "id": 4,
+      "isLocked": false,
+      "lockUntil": null
+    },
+    {
+      "email": "admin123@example.com",
+      "password": "$2a$10$0JDzLOUuxiUeScEVv8vTd.Cjqnx04kflD4OyTEwQhWz1d740o6Apu",
+      "username": "admin123@example.com",
+      "phone": "1234567522",
+      "role": "admin",
+      "id": 5
+    },
+    {
+      "email": "duongphph56@gmail.com",
+      "password": "$2a$10$3F46sLtJxQMzec2cFUQZlupXiBE0O1deQTbK6KvX/WRD/yO8Y39Em",
+      "username": "admin@example.com",
+      "phone": "0941097302",
+      "role": "admin",
+      "id": 6
+    },
+    {
+      "email": "duong123@gmail.com",
+      "password": "$2a$10$6R.esXKEGExncI7Aromk9u4DG35G9GhNZ1860NNUkqMVrfZrXgxD.",
+      "username": "duong123@gmail.com",
+      "phone": "0941097302",
+      "role": "admin",
+      "id": 7
+    },
+    {
+      "username": "demonxxx",
+      "email": "demonxxx@gmail.com",
+      "phone": "0941097302",
+      "address": "123 Đường ABC, Quận 1, TP. HCM",
+      "role": "client",
+      "password": "$2a$10$QFBZL2nDW838s4IE3D1AoOX9AeQS/YfCPdkm.6M1tGV5rS.uPr5oG",
+      "id": 8,
+      "isLocked": true,
+      "lockUntil": "2026-05-11T10:45:37.917Z"
+    },
+    {
+      "email": "loipham054@gmail.com",
+      "password": "$2a$10$2X6ho8vTfZa1/kkA3F5ww.1qNp7T62f6Ic8GDSm.tuMSRmUgz9bjW",
+      "username": "caoducloi",
+      "phone": "0987654321",
+      "role": "client",
+      "id": 10,
+      "isLocked": true,
+      "lockUntil": "2026-05-11T10:46:56.502Z"
+    },
+    {
+      "email": "Adminloi@gmail.com",
+      "password": "$2a$10$NpD8ehR8p5KF.RlKiSI6Ze/CFspB6fSdQGqIQWCJl0.fIoS5mdCOO",
+      "username": "LoiNuNa",
+      "phone": "0852548826",
+      "role": "admin",
+      "id": 11
+    },
+    {
+      "email": "phamloi16062005@gmail.com",
+      "password": "$2a$10$JbLsn.HVmWtkmW.P0CzKFeLgLdIa2uSOkuhd9SvFW00DEiCcBgwMG",
+      "username": "LoiNuNa",
+      "phone": "0852548826",
+      "role": "admin",
+      "id": 12
+    },
+    {
+      "email": "loipham052@gmail.com",
+      "password": "$2a$10$Ff5V/Es.e/nC2FUfphGaye4nbcNso3YexhurADOWK2glfr3zCw8sy",
+      "username": "LoiNuNa",
+      "phone": "0852548826",
+      "role": "admin",
+      "id": 13
+    },
+    {
+      "email": "loipham6668@gmail.com",
+      "password": "$2a$10$jNL2MFWETQZ0LSMnz5tFfu.9ETKkCeWm/krH50PSh7qZThO.NBJ/a",
+      "username": "LoiNuNa",
+      "phone": "0987654321",
+      "role": "client",
+      "id": 14
+    },
+    {
+      "email": "phamkhu18@gmail.com",
+      "password": "$2a$10$PkGal51niCUM.EyH2KdIbObn6R1RHFOvYSo1fxXj6ZhCVPX7biBSW",
+      "username": "LoiNuNa",
+      "phone": "0852548826",
+      "role": "client",
+      "id": 15
+    },
+    {
+      "email": "loipham053@gmail.com",
+      "password": "$2a$10$75Mpz1nevztNLltqZ1.NCuhfriy1ER19GL/LkUmxCMaF9snhcY/SW",
+      "username": "LoiNuNa",
+      "phone": "0852548826",
+      "role": "client",
+      "id": 16
+    }
+  ]
+}
