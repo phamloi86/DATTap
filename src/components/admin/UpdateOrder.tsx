@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Card, Form, Input, Select, Button, DatePicker, message } from "antd";
 import dayjs from "dayjs";
 import { useOrders } from "../client/OrderContext";
+import axios from "axios";
 
 const { Option } = Select;
 
@@ -11,23 +12,48 @@ const UpdateOrder: React.FC = () => {
   const { orders, updateOrder } = useOrders();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const order = orders.find((o) => o.id === Number(id));
-    if (order) setFormData(order);
-  }, [id, orders]);
+    const fetchOrder = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:3000/orders/${id}`);
+        setFormData(data);
+      } catch {
+        setFormData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrder();
+  }, [id]);
 
+  if (loading) return <div>Đang tải...</div>;
   if (!formData) return <div>Không tìm thấy đơn hàng</div>;
 
   const handleChange = (key: string, value: any) => {
     setFormData((prev: any) => ({ ...prev, [key]: value }));
   };
 
-  const handleSubmit = () => {
-    updateOrder(formData);
-    message.success("Cập nhật đơn hàng thành công!");
-    navigate("/admin/order");
+  const handleSubmit = async () => {
+    try {
+      await axios.patch(`http://localhost:3000/orders/${id}`, formData);
+      message.success("Cập nhật đơn hàng thành công!");
+      navigate("/admin/order");
+    } catch {
+      message.error("Lỗi khi cập nhật đơn hàng!");
+    }
   };
+
+  const orderStatusOptions = [
+    { value: 1, label: "Chưa xác nhận" },
+    { value: 2, label: "Đã xác nhận" },
+    { value: 3, label: "Đang giao" },
+    { value: 4, label: "Đã giao" },
+    { value: 5, label: "Giao thành công" },
+    { value: 6, label: "Hoàn thành đơn hàng" },
+    { value: 7, label: "Đã hủy" },
+  ];
 
   return (
     <div style={{ padding: 24 }}>
@@ -58,13 +84,11 @@ const UpdateOrder: React.FC = () => {
           </Form.Item>
           <Form.Item label="Trạng thái đơn hàng">
             <Select value={formData.orderStatus} onChange={(value) => handleChange("orderStatus", value)}>
-              <Option value={1}>Chưa xác nhận</Option>
-              <Option value={2}>Đã xác nhận</Option>
-              <Option value={3}>Đang giao</Option>
-              <Option value={4}>Đã giao</Option>
-              <Option value={5}>Giao thành công</Option>
-              <Option value={6}>Hoàn thành đơn hàng</Option>
-              <Option value={7}>Đã hủy</Option>
+              {orderStatusOptions
+                .filter(opt => opt.value >= formData.orderStatus)
+                .map(opt => (
+                  <Option key={opt.value} value={opt.value}>{opt.label}</Option>
+                ))}
             </Select>
           </Form.Item>
           <Form.Item>
