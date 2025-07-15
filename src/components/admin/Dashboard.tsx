@@ -37,16 +37,14 @@ const DashBoard = () => {
     fetch("http://localhost:3000/orders")
       .then((res) => res.json())
       .then((orders) => {
-        const paidOrders = orders.filter(
-          (order: { trang_thai_thanh_toan: number; }) => order.trang_thai_thanh_toan === 2
-        );
-        const unpaidOrders = orders.filter(
-          (order: { trang_thai_thanh_toan: number; }) => order.trang_thai_thanh_toan === 1
-        );
+        // Đơn đã hoàn thành (orderStatus === 6)
+        const paidOrders = orders.filter((order: any) => order.orderStatus === 6);
+        // Đơn chưa xử lý (orderStatus === 1)
+        const unpaidOrders = orders.filter((order: any) => order.orderStatus === 1);
 
-        // 🔹 Tổng doanh thu (Fix lỗi NaN)
+        // 🔹 Tổng doanh thu
         const totalRevenue = paidOrders.reduce(
-          (sum: number, order: { price: unknown; }) => sum + (Number(order.price) || 0), // Đảm bảo giá trị là số
+          (sum: number, order: any) => sum + (Number(order.totalAmount) || 0),
           0
         );
         setRevenue(totalRevenue);
@@ -59,9 +57,9 @@ const DashBoard = () => {
 
         // 🔹 Doanh thu 5 ngày gần nhất
         const revenueByDate: Record<string, number> = {};
-        paidOrders.forEach((order: { orderDate: string; price: unknown; }) => {
-          const date = order.orderDate.split("T")[0]; // Lấy phần ngày
-          revenueByDate[date] = (revenueByDate[date] || 0) + (Number(order.price) || 0);
+        paidOrders.forEach((order: any) => {
+          const date = order.orderDate.split("T")[0];
+          revenueByDate[date] = (revenueByDate[date] || 0) + (Number(order.totalAmount) || 0);
         });
 
         const sortedDates = Object.keys(revenueByDate)

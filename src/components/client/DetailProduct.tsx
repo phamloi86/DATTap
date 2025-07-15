@@ -26,9 +26,11 @@ const DetailProduct = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    if (product) {
+    if (product && product.inStock) {
       addToCart(product);
       message.success(`${product.name} đã được thêm vào giỏ hàng!`);
+    } else {
+      message.error("Sản phẩm đã hết hàng, không thể thêm vào giỏ!");
     }
   };
 
@@ -79,7 +81,7 @@ const DetailProduct = () => {
           <div style={{ marginBottom: "20px" }}>
             <p>{product.description}</p>
           </div>
-          <Button type="primary" onClick={handleAddToCart}>
+          <Button type="primary" onClick={handleAddToCart} disabled={!product.inStock}>
             Add to Cart
           </Button>
         </div>
