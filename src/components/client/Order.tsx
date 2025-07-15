@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button, Tag, Typography } from "antd";
+import { Table, Button, Tag, Typography, message, Modal, Input, Radio } from "antd";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 
@@ -28,6 +28,16 @@ const colorMap: Record<OrderStatus, string> = {
 const Order: React.FC = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState<any[]>([]);
+  const [cancelModal, setCancelModal] = useState<{ visible: boolean; orderId: number | null }>({ visible: false, orderId: null });
+  const [cancelReasons, setCancelReasons] = useState([
+    "Tôi muốn thay đổi địa chỉ nhận hàng",
+    "Tôi muốn thay đổi sản phẩm",
+    "Thời gian giao hàng quá lâu",
+    "Đặt nhầm đơn",
+    "Khác",
+  ]);
+  const [selectedReason, setSelectedReason] = useState<string>("");
+  const [customReason, setCustomReason] = useState("");
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -50,8 +60,44 @@ const Order: React.FC = () => {
   const myOrders = orders.filter(order => order.userId === user.id);
   console.log("Danh sách đơn hàng trong Order.tsx:", myOrders);
 
-  const handleCancelOrder = (orderId: number) => {
-    // Có thể gọi API PATCH để cập nhật trạng thái nếu muốn
+  const showCancelModal = (orderId: number) => {
+    setCancelModal({ visible: true, orderId });
+    setSelectedReason("");
+    setCustomReason("");
+  };
+
+  const handleCancelOrder = async () => {
+    if (!cancelModal.orderId) return;
+    let reason = selectedReason;
+    if (!reason) {
+      message.error("Vui lòng chọn lý do hủy đơn hàng!");
+      return;
+    }
+    if (reason === "Khác") {
+      if (!customReason.trim()) {
+        message.error("Vui lòng nhập lý do hủy đơn hàng!");
+        return;
+      }
+      reason = customReason;
+    }
+    try {
+      await fetch(`http://localhost:3000/orders/${cancelModal.orderId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderStatus: 7, cancelReason: reason }),
+      });
+      setOrders((prev) =>
+        prev.map((order) =>
+          order.id === cancelModal.orderId ? { ...order, orderStatus: 7, cancelReason: reason } : order
+        )
+      );
+      setCancelModal({ visible: false, orderId: null });
+      setSelectedReason("");
+      setCustomReason("");
+      message.success("Đã hủy đơn hàng thành công!");
+    } catch {
+      message.error("Hủy đơn hàng thất bại!");
+    }
   };
 
   const columns = [
@@ -84,7 +130,7 @@ const Order: React.FC = () => {
       render: (_: any, record: any) => (
         <>
           {record.orderStatus < 3 && (
-            <Button type="link" danger onClick={() => handleCancelOrder(record.id)}>
+            <Button type="link" danger onClick={() => showCancelModal(record.id)}>
               Hủy đơn hàng
             </Button>
           )}
@@ -100,6 +146,33 @@ const Order: React.FC = () => {
     <div style={{ padding: "20px" }}>
       <Title level={2}>Đơn hàng của tôi</Title>
       <Table columns={columns} dataSource={myOrders} rowKey="id" pagination={{ pageSize: 5 }} />
+      <Modal
+        title="Lý do hủy đơn hàng"
+        visible={cancelModal.visible}
+        onOk={handleCancelOrder}
+        onCancel={() => setCancelModal({ visible: false, orderId: null })}
+        okText="Xác nhận hủy"
+        cancelText="Đóng"
+      >
+        <Radio.Group
+          onChange={e => setSelectedReason(e.target.value)}
+          value={selectedReason}
+          style={{ display: "flex", flexDirection: "column", gap: 8 }}
+        >
+          {cancelReasons.map((reason) => (
+            <Radio key={reason} value={reason}>{reason}</Radio>
+          ))}
+        </Radio.Group>
+        {selectedReason === "Khác" && (
+          <Input.TextArea
+            rows={4}
+            value={customReason}
+            onChange={e => setCustomReason(e.target.value)}
+            placeholder="Vui lòng nhập lý do hủy đơn hàng..."
+            style={{ marginTop: 12 }}
+          />
+        )}
+      </Modal>
     </div>
   );
 };
