@@ -78,6 +78,7 @@ const Checkout: React.FC = () => {
       totalAmount: total,
       discountCode: discountCode || "Không sử dụng",
       discountAmount: discountAmount,
+      customerInfo: userInfo,
     };
     console.log("Đơn hàng mới:", newOrder);
     try {
@@ -92,8 +93,40 @@ const Checkout: React.FC = () => {
       localStorage.setItem("cartItems", JSON.stringify([]));
       message.success("Đã đặt hàng thành công!");
       navigate("/order");
-    } catch (err) {
+    } catch {
       message.error("Lỗi khi đặt hàng. Vui lòng thử lại!");
+    }
+  };
+  const [isEditing, setIsEditing] = useState(false);
+  const [form] = Form.useForm();
+  const [userInfo, setUserInfo] = useState(() => {
+    const saved = localStorage.getItem("checkoutUserInfo");
+    if (saved) return JSON.parse(saved);
+    return {
+      username: user?.username || "",
+      phone: user?.phone || "",
+      address: user?.address || "",
+    };
+  });
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    form.setFieldsValue(userInfo);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+  };
+
+  const handleSave = async () => {
+    try {
+      const values = await form.validateFields();
+      setUserInfo(values);
+      localStorage.setItem("checkoutUserInfo", JSON.stringify(values)); // Lưu vào localStorage
+      setIsEditing(false);
+      message.success("Cập nhật thông tin thành công!");
+    } catch (err) {
+      console.warn("Lỗi validate:", err);
     }
   };
 
@@ -102,11 +135,31 @@ const Checkout: React.FC = () => {
   return (
     <Card title="Thanh Toán" style={{ maxWidth: "800px", margin: "0 auto", padding: 20 }}>
       <Title level={4}>Thông tin khách hàng</Title>
-      <Card bordered>
-        <Text><strong>Tên:</strong> {user?.username || "Khách"}</Text><br />
-        <Text><strong>Số điện thoại:</strong> {user?.phone || "Chưa cung cấp"}</Text><br />
-        <Text><strong>Địa chỉ:</strong> {user?.address || "Chưa cung cấp"}</Text>
-      </Card>
+      {isEditing ? (
+        <Form form={form} layout="vertical" style={{ marginBottom: 24 }}>
+          <Form.Item label="Tên" name="username" rules={[{ required: true, message: "Vui lòng nhập tên!" }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item label="Số điện thoại" name="phone" rules={[{ required: true, message: "Vui lòng nhập số điện thoại!" }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item label="Địa chỉ" name="address" rules={[{ required: true, message: "Vui lòng nhập địa chỉ!" }]}>
+            <Input />
+          </Form.Item>
+          <Button type="primary" onClick={handleSave} style={{ marginRight: 8 }}>
+            Lưu
+          </Button>
+          <Button onClick={handleCancelEdit}>Hủy</Button>
+        </Form>
+      ) : (
+        <Card bordered>
+          <Text><strong>Tên:</strong> {userInfo.username || "Khách"}</Text><br />
+          <Text><strong>Số điện thoại:</strong> {userInfo.phone || "Chưa cung cấp"}</Text><br />
+          <Text><strong>Địa chỉ:</strong> {userInfo.address || "Chưa cung cấp"}</Text><br />
+          <Button type="link" onClick={handleEdit}>Chỉnh sửa</Button>
+        </Card>
+      )}
+
 
       <Divider />
 
