@@ -72,6 +72,11 @@ const DetailOrder: React.FC = () => {
               <Descriptions.Item label="Phương thức thanh toán">
                 {paymentMethodMap[order.paymentMethod as PaymentMethod]} {/* Ép kiểu */}
               </Descriptions.Item>
+              {order.orderStatus === 7 && order.cancelReason && (
+                <Descriptions.Item label="Lý do hủy đơn hàng">
+                  {order.cancelReason}
+                </Descriptions.Item>
+              )}
             </Descriptions>
           </Card>
         </Col>
@@ -79,7 +84,10 @@ const DetailOrder: React.FC = () => {
           <Card title="Thông tin người đặt hàng">
             <Descriptions column={1}>
               <Descriptions.Item label="Họ tên">
-                {order.userId === 1 ? "User 1" : "User 2"}
+                {order.customerInfo?.username || "Không rõ"}
+              </Descriptions.Item>
+              <Descriptions.Item label="Số điện thoại">
+                {order.customerInfo?.phone || "Không rõ"}
               </Descriptions.Item>
             </Descriptions>
           </Card>
@@ -88,7 +96,13 @@ const DetailOrder: React.FC = () => {
           <Card title="Thông tin người nhận hàng">
             <Descriptions column={1}>
               <Descriptions.Item label="Họ tên">
-                {order.userId === 1 ? "User 1" : "User 2"}
+                {order.customerInfo?.username || "Không rõ"}
+              </Descriptions.Item>
+              <Descriptions.Item label="Số điện thoại">
+                {order.customerInfo?.phone || "Không rõ"}
+              </Descriptions.Item>
+              <Descriptions.Item label="Địa chỉ">
+                {order.customerInfo?.address || "Không rõ"}
               </Descriptions.Item>
             </Descriptions>
           </Card>

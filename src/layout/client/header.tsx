@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { Layout, Input, Button, Row, Col, Typography, Avatar, Dropdown, Menu, AutoComplete, Badge } from "antd";
-import { UserOutlined, SearchOutlined, LogoutOutlined, LoginOutlined, UserAddOutlined, ShoppingCartOutlined, DollarOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { Layout, Input, Button, Row, Col, Typography, Avatar, AutoComplete, Badge } from "antd";
+import { UserOutlined, SearchOutlined, LoginOutlined, UserAddOutlined, ShoppingCartOutlined, DollarOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../components/auth/AuthContext";
-import { useCart } from "../../components/client/CartContext"; // Import useCart
+import { useCart } from "../../components/client/CartContext";
 import axios from "axios";
 
 const { Header } = Layout;
@@ -15,8 +15,15 @@ const removeAccents = (str: string) => {
     .replace(/đ/g, "d")
     .replace(/Đ/g, "D");
 };
+// Định nghĩa interface cho sản phẩm
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  // Thêm các trường khác nếu cần
+}
 const HeaderClient = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { cartItems } = useCart();
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState<string>("");
@@ -24,14 +31,14 @@ const HeaderClient = () => {
 
   const fetchProducts = async (query: string) => {
     try {
-      const { data } = await axios.get("http://localhost:3000/products");
+      const { data } = await axios.get<Product[]>("http://localhost:3000/products");
       const normalizedQuery = removeAccents(query.toLowerCase());
       const filteredProducts = data
-        .filter((product: any) => {
+        .filter((product: Product) => {
           const normalizedProductName = removeAccents(product.name.toLowerCase());
           return normalizedProductName.includes(normalizedQuery);
         })
-        .map((product: any) => ({
+        .map((product: Product) => ({
           value: product.id.toString(),
           label: `${product.name} - ${product.price.toLocaleString("vi-VN")} VNĐ`,
         }));
@@ -51,18 +58,10 @@ const HeaderClient = () => {
   };
 
   const handleSelect = (value: string) => {
-    navigate(`/product/${value}`);
+    navigate(`/detail/${value}`);
     setSearchValue("");
     setOptions([]);
   };
-
-  const userMenu = (
-    <Menu>
-      <Menu.Item key="logout" onClick={logout} icon={<LogoutOutlined />}>
-        Đăng xuất
-      </Menu.Item>
-    </Menu>
-  );
 
   return (
     <Header style={{ background: "#ffffff", padding: "0 24px", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}>
@@ -81,8 +80,8 @@ const HeaderClient = () => {
             onSelect={handleSelect}
           >
             <Input
-              prefix={<SearchOutlined style={{ color: "#ffffff" }} />}
-              style={{ borderRadius: "6px", background: "#e9e9e9", color: "#fff" }}
+              prefix={<SearchOutlined style={{ color: "black" }} />}
+              style={{ borderRadius: "6px", background: "#e9e9e9", color: "black" }}
               size="large"
               placeholder="Tìm kiếm sản phẩm..."
             />
