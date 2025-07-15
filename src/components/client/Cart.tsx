@@ -14,9 +14,10 @@ const CartItem: React.FC<CartItemProps> = ({ product, quantity, onRemove, onUpda
   return (
     <List.Item>
       <Card style={{ width: 240 }}>
-        <img src={product.image} alt={product.name} style={{ width: "100%" }} />
+        <img src={product.image} alt={product.name} style={{ width: "150px", height: "150px", objectFit: "cover", display: "block", margin: "0 auto 12px auto" }} />
         <Typography.Title level={4}>{product.name}</Typography.Title>
-        <Typography.Text>{product.description}</Typography.Text>
+        {/* Ẩn mô tả sản phẩm */}
+        {/* <Typography.Text>{product.description}</Typography.Text> */}
         <Typography.Text strong>{product.price.toLocaleString()} VND</Typography.Text>
         <div style={{ marginTop: 8 }}>
           <Typography.Text>Số lượng: </Typography.Text>
@@ -50,7 +51,7 @@ const Cart: React.FC = () => {
       ) : (
         <>
           <List
-            grid={{ gutter: 16, column: 3 }}
+            grid={{ gutter: 16, column: 6 }}
             dataSource={cartItems}
             renderItem={(item) => (
               <CartItem
